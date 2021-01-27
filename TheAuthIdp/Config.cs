@@ -15,6 +15,7 @@ namespace TheAuthIdp
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResource("mana3rd", new[] { "refid" }),
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -72,11 +73,14 @@ namespace TheAuthIdp
 
                     AllowOfflineAccess = true,
 
+                    AlwaysIncludeUserClaimsInIdToken = true,
+
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "api1"
+                        "api1",
+                        "mana3rd",
                     }
                 }
             };
