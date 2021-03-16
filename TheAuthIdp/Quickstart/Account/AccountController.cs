@@ -80,6 +80,9 @@ namespace IdentityServerHost.Quickstart.UI
             // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
 
+            var svcid = context.Parameters["svcid"];
+            var loginid = context.Parameters["loginid"];
+
             // the user clicked the "cancel" button
             if (button != "login")
             {

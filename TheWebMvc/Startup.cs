@@ -47,6 +47,16 @@ namespace TheWebMvc
                     options.Scope.Add("api1");
                     options.Scope.Add("mana3rd");
                     options.Scope.Add("offline_access");
+                    options.Events = new Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents
+                    {
+                        OnRedirectToIdentityProvider = context =>
+                        {
+                            context.ProtocolMessage.SetParameter("svid", "my-service-id");
+                            context.ProtocolMessage.SetParameter("loginid", "my-registered-login-id");
+                            //context.ProtocolMessage.SetParameters(); // Could also use this method
+                            return Task.CompletedTask;
+                        },
+                    };
                 });
         }
 
